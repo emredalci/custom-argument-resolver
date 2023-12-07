@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: hexagonal
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hexagonal
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  cache:
+    type: redis
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: ["health"]
+  endpoint:
+    health:
+      show-details: always
