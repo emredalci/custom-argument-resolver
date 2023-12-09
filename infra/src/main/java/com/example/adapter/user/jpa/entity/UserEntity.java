@@ -1,10 +1,11 @@
 package com.example.adapter.user.jpa.entity;
 
+import com.example.adapter.item.jpa.entity.ItemEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
+@EqualsAndHashCode(exclude = "items")
 public class UserEntity {
 
     @Id
@@ -24,4 +26,16 @@ public class UserEntity {
     @Column(nullable = false, unique = true)
     private String mail;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @Setter(AccessLevel.NONE)
+    private Set<ItemEntity> items = new HashSet<>();
+
+    public void addItem(ItemEntity item) {
+        if (item == null) {
+            return;
+        }
+
+        item.setUser(this);
+        items.add(item);
+    }
 }

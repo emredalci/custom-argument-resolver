@@ -1,20 +1,13 @@
-package com.example.user.model;
+package com.example.usertoken.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class CreateUser {
+public class RetrieveUserId {
 
     private Long userId;
-
-    private Boolean isCreated;
-
-    private String accessToken;
-
 }

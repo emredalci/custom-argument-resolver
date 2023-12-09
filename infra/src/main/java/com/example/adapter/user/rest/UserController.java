@@ -1,5 +1,6 @@
 package com.example.adapter.user.rest;
 
+import com.example.adapter.user.resolver.RequestUserIdFromAccessToken;
 import com.example.adapter.user.rest.dto.CreateUserRequest;
 import com.example.adapter.user.rest.dto.CreateUserResponse;
 import com.example.adapter.user.rest.dto.RetrieveUserResponse;
@@ -23,13 +24,13 @@ public class UserController extends BaseController {
         return respond(CreateUserResponse.fromModel(createUser));
     }
 
-    @GetMapping("/{mail}")
-    public ResponseEntity<RetrieveUserResponse> retrieve(@PathVariable String mail) {
-        RetrieveUser retrieveUser = publish(RetrieveUser.class, toRetrieveUserUseCase(mail));
+    @GetMapping()
+    public ResponseEntity<RetrieveUserResponse> retrieve(@RequestUserIdFromAccessToken Long userId) {
+        RetrieveUser retrieveUser = publish(RetrieveUser.class, toRetrieveUserUseCase(userId));
         return respond(RetrieveUserResponse.fromModel(retrieveUser));
     }
 
-    private RetrieveUserUseCase toRetrieveUserUseCase(String mail) {
-        return new RetrieveUserUseCase(mail);
+    private RetrieveUserUseCase toRetrieveUserUseCase(Long userId) {
+        return new RetrieveUserUseCase(userId);
     }
 }

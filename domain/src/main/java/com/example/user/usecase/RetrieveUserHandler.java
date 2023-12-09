@@ -18,6 +18,6 @@ public class RetrieveUserHandler extends RegisterHelper implements UseCaseHandle
 
     @Override
     public RetrieveUser handler(RetrieveUserUseCase useCase) {
-        return userPort.get(useCase);
+        return userPort.retrieve(useCase);
     }
 }

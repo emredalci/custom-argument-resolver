@@ -9,6 +9,6 @@ public interface UserPort {
 
     CreateUser save(CreateUserUseCase useCase);
 
-    RetrieveUser get(RetrieveUserUseCase useCase);
+    RetrieveUser retrieve(RetrieveUserUseCase useCase);
 
 }

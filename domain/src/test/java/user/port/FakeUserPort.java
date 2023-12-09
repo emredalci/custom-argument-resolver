@@ -10,13 +10,14 @@ public class FakeUserPort implements UserPort {
     @Override
     public CreateUser save(CreateUserUseCase useCase) {
         if (useCase.name().equals("emre")) {
-            return new CreateUser(true);
+            return CreateUser.builder().userId(1L).isCreated(true).build();
+
         }
-        return new CreateUser(false);
+        return CreateUser.builder().isCreated(false).build();
     }
 
     @Override
-    public RetrieveUser get(RetrieveUserUseCase useCase) {
-        return new RetrieveUser("emre", useCase.mail());
+    public RetrieveUser retrieve(RetrieveUserUseCase useCase) {
+        return null;
     }
 }
